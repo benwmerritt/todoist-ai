@@ -1,0 +1,29 @@
+# Dependencies (will be installed fresh in container)
+node_modules/
+
+# Git
+.git/
+.gitignore
+
+# Development files
+.env
+.env.example
+*.log
+*.md
+!README.md
+
+# Build artifacts (we build fresh in container)
+dist/
+
+# Test files
+**/*.test.ts
+**/*.spec.ts
+coverage/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -17,10 +17,11 @@ export default defineConfig({
     // Build configuration for library mode
     build: {
         lib: {
-            // Multiple entry points for CLI and library
+            // Multiple entry points for CLI, library, and remote HTTP server
             entry: {
                 main: resolve(__dirname, 'src/main.ts'),
                 index: resolve(__dirname, 'src/index.ts'),
+                remote: resolve(__dirname, 'src/remote.ts'),
             },
             formats: ['es'], // ESM only (matches package.json "type": "module")
             fileName: (_format, entryName) => `${entryName}.js`,
@@ -32,6 +33,7 @@ export default defineConfig({
                 '@doist/todoist-api-typescript',
                 'date-fns',
                 'dotenv',
+                'express',
                 'zod',
                 // Node.js built-ins (both forms)
                 'node:path',
@@ -77,7 +79,8 @@ export default defineConfig({
             include: ['src/**/*.ts'],
             exclude: [
                 'src/**/*.d.ts',
-                'src/main.ts', // Exclude the MCP server entry point
+                'src/main.ts', // Exclude the stdio MCP server entry point
+                'src/remote.ts', // Exclude the HTTP MCP server entry point
                 'src/**/*.test.ts',
                 'src/**/*.spec.ts',
             ],
